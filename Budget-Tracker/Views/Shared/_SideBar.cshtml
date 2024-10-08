@@ -1,0 +1,73 @@
+﻿
+@{
+    List<Object> menuList = new List<Object>();
+    menuList.Add(new
+    {
+        text  = "General",
+        separator = true,
+    });
+
+    menuList.Add(new
+    {
+        text ="Dashboard",
+        url = "/",
+        iconCss="fa-solid fa-box"
+    });
+    menuList.Add(new
+    {
+        text = "Category",
+        url = "/Category",
+        iconCss = "fa-solid fa-folder-closed"
+    });
+
+    menuList.Add(new
+    {
+        text = "Transaction",
+        url = "/Transaction",
+        iconCss = "fa-solid fa-arrow-right-arrow-left"
+    });
+
+
+
+}
+
+
+<ejs-sidebar id="sidebar" width="290px" enableDock dockSize="100px" target=".dock-target" enableGestures=false>
+    <e-content-template>
+        <div class="logo-wrapper">
+            
+            <div class="app-logo">
+                <img src="/logo.png" />
+            </div>
+            <div class="w-100"></div>
+            <i id="sidebar-toggler" class="fa-solid"></i>
+        
+        </div>
+
+        <div class="profile-wrapper">
+            <img class="profile-pic" src="/profile.jpg" />
+            <div class="titles d-flex flex-column ps-3">
+                <h6 class="mb-0">Wallet App</h6>
+                <span class="text-muted">Tobias Qlok</span>
+            </div>
+        </div>
+
+        <ejs-menu id="menu" 
+        items="menuList" 
+        orientation="Vertical" 
+        hamburgerMode>
+
+        </ejs-menu>
+    </e-content-template>
+</ejs-sidebar>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        dockBar = document.getElementById('sidebar').ej2_instances[0];
+        document.getElementById('sidebar-toggler').onclick = function () {
+            dockBar.toggle();
+        };
+    });
+</script>

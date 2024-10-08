@@ -61,7 +61,7 @@ namespace Budget_Tracker.Controllers
         //Post: Transaction/AddOrEdit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("TransactioId,CategoryId,Amount,Note,Date")]Transaction transaction)
+        public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")]Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -110,13 +110,15 @@ namespace Budget_Tracker.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        
-        
-        
-        
-        
-        
-        
+
+
+        //Get: Transaction/Filters all transactions by category
+        public async Task<IActionResult> Filter(int id)
+        {
+            var appDbContext = _context.Transactions.Include(t => t.Category).Where(t => t.CategoryId == id);
+            return View("Index", await appDbContext.ToArrayAsync());
+        }
+
         public void PopulateCategories()
         {
             var CategoryCollection = _context.Categories.ToList();

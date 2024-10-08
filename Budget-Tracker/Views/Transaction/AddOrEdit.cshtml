@@ -1,0 +1,65 @@
+﻿@model Transaction
+
+@{
+    ViewData["PageTitle"]= Model.TransactionId == 0 ? "Add Transaction" : "Edit Transaction";
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5">
+
+            <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="TransactionId" />
+
+                <div class="mb-3">
+
+                    <ejs-dropdownlist id="ddlCategory" ejs-for="CategoryId" dataSource="@ViewBag.Categories"
+                    placeholder="All Categories" floatLabelType="Always" allowFiltering=true ignoreAccent=true
+                    filterType="Contains" popupHeight="200px"> 
+                    
+                    <e-dropdownlist-fields value="CategoryId" text="TitleWithIcon"></e-dropdownlist-fields>
+
+
+                    </ejs-dropdownlist>
+                </div>
+
+                <div class="mb-3">
+                    <ejs-numerictextbox id="amount" ejs-for="Amount" placeholder="Amount" 
+                    floatLabelType="Always" min="0" format="0"></ejs-numerictextbox>
+                </div>
+
+                <div class="mb-3">
+                    <ejs-textbox id="note" placeholder="Note" ejs-for="Note" floatLabelType="Always" 
+                    multiline=true
+                    ></ejs-textbox>
+
+                </div>
+
+                <div class="mb-3">
+                    <ejs-datepicker id="date" ejs-for="Date" placeholder="Date"
+                                    floatLabelType="Always" format="yyyy-MM-dd">
+
+                    </ejs-datepicker>
+                </div>
+
+                <div class="mb-3">
+                    <ejs-button id="submit" typeof="Submit" content="Submit" cssClass="e-success"></ejs-button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-money-bill-transfer fa-2xl"></i>
+        </div>
+    </div>
+
+</div>
+
+
